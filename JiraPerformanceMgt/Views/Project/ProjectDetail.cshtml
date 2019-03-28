@@ -1,0 +1,44 @@
+﻿@using Jira.BO.Models
+@model IEnumerable<Item>
+
+
+<h4>@ViewBag.Title </h4>
+
+        @Html.ActionLink("Back to Projects", "List")
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Abbr</th>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Description</th>                    
+                    <th>Status</th>
+                    <th>Due</th>
+                    <th>Assignee</th>
+                    <th title="Estimated Time">ET</th>
+                    <th title="Remaining Time">RT</th>
+                    <th title="Percent Done">%</th>
+                    <th title="Work Log Items">Logs</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td style="vertical-align:top; text-align: center; width: 60px;">@Html.DisplayFor(i => item.Abbr)</td>
+                        <td style="vertical-align: top; text-align: center;">@Html.DisplayFor(i => item.ItemType)</td>
+                        <td style="vertical-align: top; width: 100px;">@Html.DisplayFor(i => item.Title)</td>
+                        <td style="vertical-align: top; width: 150px; word-wrap: break-word">@Html.DisplayFor(i => item.Description)</td>                        
+                        <td style="vertical-align: top; text-align: center;">@Html.DisplayFor(i => item.ItemStatus)</td>
+                        <td style="vertical-align: top; text-align: center;">@Html.DisplayFor(i => item.FormattedDueDt)</td>
+                        <td style="vertical-align: top; width: 120px;">@Html.DisplayFor(i => item.User.DisplayName)</td>
+                        <td style="vertical-align: top;">@Html.DisplayFor(i => item.OrigianlEstimageInHours) (hours)</td>
+                        <td style="vertical-align: top;">@Html.DisplayFor(i => item.RemainingTimeInHours) (hours)</td>
+                        <td style="vertical-align: top; text-align: center; width: 40px;">@Html.DisplayFor(i => item.PercentDone) %</td>
+                        <td style="vertical-align: top;">@Html.DisplayFor(i => item.WorkLogs.Count)</td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.ActionLink("Back to Projects", "List")
+

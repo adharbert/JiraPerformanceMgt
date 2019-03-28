@@ -1,0 +1,35 @@
+﻿@using Jira.BO.Models
+@model IEnumerable<Project>
+@{
+    ViewBag.Title = "Project List";
+}
+
+<h4>@ViewBag.Title</h4>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Abbr</th>
+            <th>Item(s)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model) {
+            <tr>
+                <td>@Html.DisplayFor(p => project.Name)</td>
+                <td>@Html.DisplayFor(p => project.Abbr)</td>
+                <td>@Html.DisplayFor(p => project.Items.Count)</td>
+                <td>
+                    @Html.ActionLink("View", "ProjectDetail", new { Id = project.ProjectID })
+                </td>
+            </tr>
+        }
+            <tr>
+                <td colspan="4" class="validation-summary-errors">@ViewBag.Error</td>
+            </tr>
+    </tbody>
+</table>
+
